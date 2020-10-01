@@ -9,6 +9,7 @@ Data gathering and estimation of total COVID-19 cases in Luxembourg
 The method doesn't appear to work for smaller numbers of cases - or there's an error with my methodology.
 
 See results below:
+
 ![Existing data](figures/confirmed_cases_and_deaths.png)
 ![Smoothed data](figures/smoothed_confirmed_cases_and_deaths.png)
 ![Percentage of tests as positive cases](figures/smoothed_confirmed_cases_and_test_pos_pc.png)
