@@ -20,10 +20,10 @@ main$deaths24h_smth7 <- filter(main$deaths24h, filter = rep(1/7,7))
 png(filename = 'figures/confirmed_cases_and_deaths.png', width = 600, height=400)
 par(mar=c(4,4,2,4))
 plot(main$date, main$cases24h, col='red', type='l', lwd=2, ylab='', xlab='Date', yaxt='n', main="Daily values")
+axis(2, col='red', col.axis='red', col.ticks = 'red', ); mtext("Confirmed cases", 2, 2, col="red")
 par(new=T)
 plot(main$date, main$deaths24h, col='black', type='l', lwd=2, axes=F, ann=F)
 axis(4); mtext("Deaths", 4, 2)
-axis(2, col='red', col.axis='red', col.ticks = 'red', ); mtext("Confirmed cases", 2, 2, col="red")
 dev.off()
 
 # Smoothed
@@ -64,11 +64,12 @@ full$cc_estim_high_smth7 <- filter(full$cc_estim_high, filter = rep(1/7,7))
 
 # Try this again
 png(filename = 'figures/adjusted_cases.png', width = 600, height=400)
-plot(full$date, full$cc_estim_high_smth7, xlab='Date', ylab='COVID-19 Cases', type='n', main="(Flawed) Adjusted estimated cases in Luxembourg")
+plot(full$date, full$cc_estim_high_smth7, xlab='Date', ylab='COVID-19 Cases (7-day smoothed)', type='n', main="(Flawed) Adjusted estimated cases in Luxembourg")
 # drop rows with NA for polygon
 polygon(c(full$date[!is.na(full$cc_estim_high_smth7)], rev(full$date[!is.na(full$cc_estim_high_smth7)])), c(full$cc_estim_low_smth7[!is.na(full$cc_estim_high_smth7)], rev(full$cc_estim_high_smth7[!is.na(full$cc_estim_high_smth7)])), col='grey', lty=0)
 # known cases confirmed
 lines(full$date, full$cases24h_smth7, lwd=2)
 mtext("Estimated actual number of cases", 4, 2, col='grey')
-legend('topright', legend = c('Confirmed cases', 'Estimated total number'), lty=c(1,NA), pt.bg ='black', lwd=c(2,0), fill=c(NA, 'grey'), border = NA)
+legend('top', legend = c('Confirmed cases - 7 day average', 'Estimated total number'), lty=c(1,NA), pt.bg ='black', lwd=c(2,0), fill=c(NA, 'grey'), border = NA)
 dev.off()
+
